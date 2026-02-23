@@ -1,103 +1,78 @@
-<div class="w-xl sticky flex h-screen flex-col justify-between border-e border-gray-100 bg-white">
+<div class="w-lg sticky flex h-screen flex-col justify-between border-e border-gray-100 bg-white">
 	<div class="px-4 py-6">
 		<span class="grid h-10 w-32 place-content-center rounded-lg bg-gray-100 text-xs text-gray-600">
 		Logo
 		</span>
 
 		<ul class="mt-6 space-y-1">
-		<li>
-			<a href="#" class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
-			General
-			</a>
-		</li>
+			<li>
+				<details class="group [&amp;_summary::-webkit-details-marker]:hidden" open>
+					<summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+						<span class="text-sm font-medium"> Chats </span>
 
-		<li>
-			<details class="group [&amp;_summary::-webkit-details-marker]:hidden">
-			<summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-				<span class="text-sm font-medium"> Teams </span>
+						<span class="shrink-0 transition duration-300 group-open:-rotate-180">
+						<svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 20 20" fill="currentColor">
+							<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+						</svg>
+						</span>
+					</summary>
 
-				<span class="shrink-0 transition duration-300 group-open:-rotate-180">
-				<svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 20 20" fill="currentColor">
-					<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-				</svg>
-				</span>
-			</summary>
+					<ul class="mt-2 space-y-1 px-4">
+						<li>
+							<a href="#" class="relative rounded-md px-4 py-2 text-sm font-medium border-b flex items-center gap-2 border-gray-200 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+								<div class="w-1/12">
+									<img alt="" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" class="size-10 rounded-full object-cover">
+								</div>
+								<div class="w-10/12">
+									<p class="font-bold text-gray-800">Sergio Gutierrez</p>
+									<p class="truncate">This is just a mockup message</p>
+								</div>
+								<div class="min-w-4 h-4 p-1 bg-indigo-800 rounded-full flex justify-center items-center absolute right-4">
+									<p class="text-[12px] text-center text-white">1</p>
+								</div>
+							</a>
+						</li>
 
-			<ul class="mt-2 space-y-1 px-4">
-				<li>
+						<li>
+							<a href="#" class="relative rounded-md px-4 py-2 text-sm font-medium border-b flex items-center gap-2 border-gray-200 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+								<div class="w-1/12">
+									<img alt="" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" class="size-10 rounded-full object-cover">
+								</div>
+								<div class="w-10/12">
+									<p class="font-bold text-gray-800">Anyelis Palma</p>
+									<p class="truncate">This is just a mockup message and as if you don't actually know how to truncate any text...</p>
+								</div>
+								<div class="min-w-4 h-4 p-1 bg-indigo-800 rounded-full flex justify-center items-center absolute right-4">
+									<p class="text-[12px] text-center text-white">100+</p>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</details>
+			</li>
+
+			<li>
 				<a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-					Banned Users
+				Contacts
 				</a>
-				</li>
-
-				<li>
-				<a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-					Calendar
-				</a>
-				</li>
-			</ul>
-			</details>
-		</li>
-
-		<li>
-			<a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-			Billing
-			</a>
-		</li>
-
-		<li>
-			<a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-			Invoices
-			</a>
-		</li>
-
-		<li>
-			<details class="group [&amp;_summary::-webkit-details-marker]:hidden">
-			<summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-				<span class="text-sm font-medium"> Account </span>
-
-				<span class="shrink-0 transition duration-300 group-open:-rotate-180">
-				<svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 20 20" fill="currentColor">
-					<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-				</svg>
-				</span>
-			</summary>
-
-			<ul class="mt-2 space-y-1 px-4">
-				<li>
-				<a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-					Details
-				</a>
-				</li>
-
-				<li>
-				<a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-					Security
-				</a>
-				</li>
-
-				<li>
-				<a href="#" class="w-full rounded-lg px-4 py-2 [text-align:_inherit] text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-					Logout
-				</a>
-				</li>
-			</ul>
-			</details>
-		</li>
+			</li>
 		</ul>
 	</div>
 
-	<div class="sticky inset-x-0 bottom-0 border-t border-gray-100">
-		<a href="#" class="flex items-center gap-2 bg-white p-4 hover:bg-gray-50">
-		<img alt="" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" class="size-10 rounded-full object-cover">
+	<div class="sticky inset-x-0 bottom-0 border-t border-gray-100 flex justify-between items-center">
+		<a href="#" class="w-14/16 flex items-center gap-2 bg-white p-4 hover:bg-gray-50">
+			<img alt="" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" class="size-10 rounded-full object-cover">
 
-		<div>
-			<p class="text-xs">
-			<strong class="block font-medium">Eric Frusciante</strong>
+			<div>
+				<p class="text-xs">
+				<strong class="block font-medium">Sergio Gutierrez</strong>
 
-			<span> user@chitchat.com </span>
-			</p>
-		</div>
+				<span> user@chitchat.com </span>
+				</p>
+			</div>
+		</a>
+		<a class="w-10 h-10 rounded-full p-2 gap-2 bg-white hover:bg-gray-50 flex items-center absolute right-4" href="#">
+			C
 		</a>
 	</div>
 </div>
