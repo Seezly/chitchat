@@ -10,6 +10,10 @@ Route::get('/dashboard', function () {
     return view('dashboard.index');
 });
 
+Route::get('/conversation', function () {
+    return view('dashboard.conversation');
+});
+
 Route::get('/profile', function () {
     return view('dashboard.profile');
 });

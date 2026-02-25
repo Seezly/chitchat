@@ -8,7 +8,7 @@
             <h2 class="mt-6 text-2xl font-bold text-gray-900">Thanks for using ChitChat!</h2>
 
             <p class="mt-4 text-pretty text-gray-700">
-                Go to <a class="text-indigo-800 hover:text-indigo-700 underline" href="#">contacts</a> to add a new friend or start a new conversation.
+                Go to <a class="text-indigo-800 hover:text-indigo-700 underline" href="{{ url('contacts') }}">contacts</a> to add a new friend or start a new conversation.
             </p>
 
             <ol class="mt-6 space-y-2 text-left">
