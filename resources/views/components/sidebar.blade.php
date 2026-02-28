@@ -18,35 +18,28 @@
 					</summary>
 
 					<ul class="mt-2 space-y-1 px-4">
-						<li>
-							<a href="{{ url('conversation') }}" class="relative rounded-md px-4 py-2 text-sm font-medium border-b flex items-center gap-2 border-gray-200 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-								<div>
-									<img alt="" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" class="size-10 rounded-full object-cover">
-								</div>
-								<div class="w-9/12">
-									<p class="font-bold text-gray-800">Sergio Gutierrez</p>
-									<p class="truncate">This is just a mockup message</p>
-								</div>
-								<div class="min-w-4 h-4 p-1 bg-indigo-800 rounded-full flex justify-center items-center absolute right-4">
-									<p class="text-[12px] text-center text-white">1</p>
-								</div>
-							</a>
-						</li>
-
-						<li>
-							<a href="{{ url('conversation') }}" class="relative rounded-md px-4 py-2 text-sm font-medium border-b flex items-center gap-2 border-gray-200 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-								<div>
-									<img alt="" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" class="size-10 rounded-full object-cover">
-								</div>
-								<div class="w-9/12">
-									<p class="font-bold text-gray-800">Anyelis Palma</p>
-									<p class="truncate">This is just a mockup message and as if you don't actually know how to truncate any text...</p>
-								</div>
-								<div class="min-w-4 h-4 p-1 bg-indigo-800 rounded-full flex justify-center items-center absolute right-4">
-									<p class="text-[12px] text-center text-white">100+</p>
-								</div>
-							</a>
-						</li>
+						@if ($recentConversations->isEmpty())
+							<p class="text-gray-800 font-medium">There's nothing here... Try to send a message!</p>
+						@else
+							@foreach ($recentConversations as $conversation)
+								<li>
+									<a href="{{ route('conversation.show', $conversation) }}" class="relative rounded-md px-4 py-2 text-sm font-medium border-b flex items-center gap-2 border-gray-200 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+										<div>
+											<img alt="" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" class="size-10 rounded-full object-cover">
+										</div>
+										<div class="w-9/12">
+											<p class="font-bold text-gray-800">{{ $conversation->lastMessage->sender->name }}</p>
+											<p class="truncate">{{ $conversation->lastMessage->body }}</p>
+										</div>
+										@if ($conversation->unread_messages > 0)
+											<div class="min-w-4 h-4 p-1 bg-indigo-800 rounded-full flex justify-center items-center absolute right-4">
+												<p class="text-[12px] text-center text-white">{{ $conversation->unread_messages }}</p>
+											</div>
+										@endif
+									</a>
+								</li>
+							@endforeach
+						@endif
 					</ul>
 				</details>
 			</li>
@@ -73,8 +66,8 @@
 		</a>
 		<form class="flex items-center mx-auto" action="{{ route('logout') }}" method="POST">
 			@csrf
-			<button type="submit" class="w-10 h-10 rounded-full text-center justify-center p-2 gap-2 bg-white hover:bg-gray-50 cursor-pointer">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M259.1 73.5C262.1 58.7 275.2 48 290.4 48L350.2 48C365.4 48 378.5 58.7 381.5 73.5L396 143.5C410.1 149.5 423.3 157.2 435.3 166.3L503.1 143.8C517.5 139 533.3 145 540.9 158.2L570.8 210C578.4 223.2 575.7 239.8 564.3 249.9L511 297.3C511.9 304.7 512.3 312.3 512.3 320C512.3 327.7 511.8 335.3 511 342.7L564.4 390.2C575.8 400.3 578.4 417 570.9 430.1L541 481.9C533.4 495 517.6 501.1 503.2 496.3L435.4 473.8C423.3 482.9 410.1 490.5 396.1 496.6L381.7 566.5C378.6 581.4 365.5 592 350.4 592L290.6 592C275.4 592 262.3 581.3 259.3 566.5L244.9 496.6C230.8 490.6 217.7 482.9 205.6 473.8L137.5 496.3C123.1 501.1 107.3 495.1 99.7 481.9L69.8 430.1C62.2 416.9 64.9 400.3 76.3 390.2L129.7 342.7C128.8 335.3 128.4 327.7 128.4 320C128.4 312.3 128.9 304.7 129.7 297.3L76.3 249.8C64.9 239.7 62.3 223 69.8 209.9L99.7 158.1C107.3 144.9 123.1 138.9 137.5 143.7L205.3 166.2C217.4 157.1 230.6 149.5 244.6 143.4L259.1 73.5zM320.3 400C364.5 399.8 400.2 363.9 400 319.7C399.8 275.5 363.9 239.8 319.7 240C275.5 240.2 239.8 276.1 240 320.3C240.2 364.5 276.1 400.2 320.3 400z"/></svg>
+			<button type="submit" class="group w-10 h-10 rounded-full text-center justify-center p-2 gap-2 bg-white hover:bg-gray-50 cursor-pointer">
+				<svg xmlns="http://www.w3.org/2000/svg" class="transform group-hover:scale-[1.2] transition duration-200" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M136.5 88C136.5 57.1 161.6 32 192.5 32C223.4 32 248.5 57.1 248.5 88C248.5 118.9 223.4 144 192.5 144C161.6 144 136.5 118.9 136.5 88zM128.5 269.3L105.9 291.9C99.9 297.9 96.5 306 96.5 314.5L96.5 352C96.5 369.7 82.2 384 64.5 384C46.8 384 32.5 369.7 32.5 352L32.5 314.5C32.5 289 42.6 264.6 60.6 246.6L95.7 211.5C118.5 188.7 149.3 175.9 181.5 175.9C218.4 175.9 253.3 192.7 276.3 221.5L294.3 244C300.4 251.6 309.6 256 319.3 256L352.5 256C370.2 256 384.5 270.3 384.5 288C384.5 305.7 370.2 320 352.5 320L319.3 320C290.1 320 262.6 306.7 244.3 284L240.5 279.3L240.5 394.5L275 424.1C292.7 439.3 304.3 460.3 307.6 483.4L320.2 571.5C322.7 589 310.5 605.2 293 607.7C275.5 610.2 259.3 598 256.8 580.5L244.2 492.4C243.1 484.7 239.2 477.7 233.3 472.6L162 411.5C140.7 393.3 128.5 366.6 128.5 338.6L128.5 269.3zM128.6 435C131 437.3 133.4 439.6 136 441.8L182 481.2L179.8 488.8C175.3 504.5 166.9 518.8 155.4 530.3L87.1 598.6C74.6 611.1 54.3 611.1 41.8 598.6C29.3 586.1 29.3 565.8 41.8 553.3L110.1 485C113.9 481.2 116.7 476.4 118.2 471.2L128.6 435zM537.5 409C528.1 418.4 512.9 418.4 503.6 409C494.3 399.6 494.2 384.4 503.6 375.1L534.6 344.1L432.5 344.1C419.2 344.1 408.5 333.4 408.5 320.1C408.5 306.8 419.2 296.1 432.5 296.1L534.6 296.1L503.6 265.1C494.2 255.7 494.2 240.5 503.6 231.2C513 221.9 528.2 221.8 537.5 231.2L609.5 303.2C618.9 312.6 618.9 327.8 609.5 337.1L537.5 409.1z"/></svg>
 			</button>
 		</form>
 	</div>
