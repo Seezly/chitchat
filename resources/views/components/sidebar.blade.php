@@ -29,7 +29,7 @@
 										</div>
 										<div class="w-9/12">
 											<p class="font-bold text-gray-800">{{ $conversation->users[0]->name }}</p>
-											<p data-element="body" class="truncate">{{ $conversation->lastMessage->body ?? '' }}</p>
+											<p data-element="body" class="truncate">{{ $conversation->lastMessage->body ?? $conversation->users[0]->status }}</p>
 										</div>
 										@if ($conversation->unread_messages > 0)
 											<div class="min-w-4 h-4 p-1 bg-indigo-800 rounded-full flex justify-center items-center absolute right-4">

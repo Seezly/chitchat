@@ -48,7 +48,7 @@ if (searchInput) {
                             `
                             <div data-id="${user.id}" class="w-[45%] border-b border-gray-400 px-4 py-2 flex justify-between items-center mb-4">
                                 <div class="w-4/6 flex gap-4 justify-start items-center">
-                                    <img class="size-10 rounded-full object-cover" src="${user.profile_pic}" alt="">
+                                    <img class="size-10 rounded-full object-cover" src="/storage/${user.profile_pic}" alt="">
                                     <p class="text-gray-800 font-medium truncate w-10/12">${user.name}</p>
                                 </div>
                                 <form action="/contacts" method="POST">

@@ -139,7 +139,7 @@
                 @csrf
                 @method('PUT')
                     <label for="File" class="w-48 h-48 mb-4 mx-auto rounded-full border border-gray-300 bg-white text-gray-900 shadow-sm dark:border-indigo-800 dark:bg-gray-900 dark:text-white overflow-hidden cursor-pointer">
-                        <img id="img_placeholder" class="w-full h-full object-cover" src="{{ asset('storage/', auth()->user()->profile_pic) }}" alt="Profile Picture">
+                        <img id="img_placeholder" class="w-full h-full object-cover" src="{{ asset('storage/' . auth()->user()->profile_pic) }}" alt="Profile Picture">
                         <input multiple="" type="file" id="File" name="profile_pic" class="sr-only">
                     </label>
                     <p class="font-medium text-gray-800">Profile picture</p>

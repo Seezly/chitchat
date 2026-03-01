@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('profile_pic')->default("profile_pics/user_profile_pic.png");
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('status')->nullable();
+            $table->string('status')->default('New to ChitChat');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

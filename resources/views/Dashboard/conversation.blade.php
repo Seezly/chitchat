@@ -4,6 +4,7 @@
             <div class="flex gap-4 justify-center items-center">
                 <img class="size-10 rounded-full object-cover" src="{{ asset('storage/' . $contact->profile_pic) }}" alt="">
                 <p class="text-gray-800 font-medium">{{ $contact->name }}</p>
+                <p class="text-gray-800 font-medium">{{ $contact->status }}</p>
             </div>
             <div class="flex gap-4 justify-center items-center relative">
                 <form action="" id="form-search" class="max-w-0 overflow-hidden transition-[max-width] duration-200" aria-hidden="true">
