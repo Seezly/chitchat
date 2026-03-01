@@ -70,10 +70,6 @@ class ConversationController extends Controller
             ->having('users_count', 2)
             ->first();
 
-        if ($conversation->trashed()) {
-            $conversation->restore();
-        }
-
         if (!$conversation) {
             $conversation = Conversation::create(['last_message_at' => now()]);
 
@@ -89,6 +85,10 @@ class ConversationController extends Controller
                     'last_read_at' => null,
                 ],
             ]);
+        }
+
+        if ($conversation->trashed()) {
+            $conversation->restore();
         }
 
         return $conversation;
