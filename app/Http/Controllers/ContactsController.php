@@ -30,13 +30,18 @@ class ContactsController extends Controller
             ->paginate(6);
 
         $friendRequests = $user
-            ->join('contacts', function (JoinClause $join) {
-                $join->on('users.id', '=', 'contacts.receiver_id');
-            })
-            ->select('users.name', 'users.profile_pic', 'users.status', 'users.id', 'contacts.id as contact_id')
+            ->leftJoin('contacts', 'users.id', '=', 'contacts.sender_id')
+            ->select(
+                'users.name',
+                'users.profile_pic',
+                'users.status',
+                'users.id',
+                'contacts.id as contact_id'
+            )
+            ->where('contacts.receiver_id', $currentUserId)
             ->where(function ($query) {
-                $query->where('contacts.accepted_at', '=', 'NULL')
-                    ->where('contacts.rejected_at', '=', 'NULL');
+                $query->whereNull('contacts.accepted_at')
+                    ->whereNull('contacts.rejected_at');
             })
             ->paginate(6);
 
@@ -122,6 +127,6 @@ class ContactsController extends Controller
             Contact::find($contactId)->update(['rejected_at' => now()]);
         }
 
-        return response()->json(['success' => true]);
+        return redirect()->back();
     }
 }
