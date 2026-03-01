@@ -46,7 +46,7 @@ if (searchInput) {
                         friendContainer.insertAdjacentHTML(
                             "beforeend",
                             `
-                            <div class="w-[45%] border-b border-gray-400 px-4 py-2 flex justify-between items-center mb-4">
+                            <div data-id="${user.id}" class="w-[45%] border-b border-gray-400 px-4 py-2 flex justify-between items-center mb-4">
                                 <div class="w-4/6 flex gap-4 justify-start items-center">
                                     <img class="size-10 rounded-full object-cover" src="${user.profile_pic}" alt="">
                                     <p class="text-gray-800 font-medium truncate w-10/12">${user.name}</p>
@@ -62,6 +62,48 @@ if (searchInput) {
                         `,
                         );
                     });
+
+                    document
+                        .querySelectorAll(
+                            "form[action='/contacts'] button[type='submit']",
+                        )
+                        .forEach((btn, i) => {
+                            btn.addEventListener("click", (e) => {
+                                e.preventDefault();
+
+                                fetch("/contacts", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                    },
+                                    body: JSON.stringify({
+                                        _token: document
+                                            .querySelector(
+                                                "meta[name='csrf-token']",
+                                            )
+                                            .getAttribute("content"),
+                                        _id: document.querySelectorAll(
+                                            "form[action='/contacts'] input[name='_id']",
+                                        )[i].value,
+                                    }),
+                                })
+                                    .then((res) => res.json())
+                                    .then((data) => {
+                                        if (data.success) {
+                                            console.log(
+                                                document.querySelectorAll(
+                                                    "div[data-id]",
+                                                )[i],
+                                            );
+                                            document
+                                                .querySelectorAll(
+                                                    "div[data-id]",
+                                                )
+                                                [i].remove();
+                                        }
+                                    });
+                            });
+                        });
                 });
         }),
     );
@@ -71,7 +113,6 @@ if (btnResponseFriend) {
     btnResponseFriend.forEach((btn) => {
         btn.addEventListener("click", (e) => {
             e.preventDefault();
-            console.log("Ok, got you!");
             const form = btn.parentNode;
             const responseInput = form.querySelector("input[name='_response']");
 

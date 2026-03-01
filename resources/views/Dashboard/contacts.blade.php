@@ -38,6 +38,8 @@
                                         </a>
                                 </div>
                             @endforeach
+
+                            {{$contacts->links()}}
                         @endif
                     </div>
                 </div>

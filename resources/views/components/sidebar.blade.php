@@ -23,17 +23,17 @@
 						@else
 							@foreach ($recentConversations as $conversation)
 								<li>
-									<a href="{{ route('conversation.show', $conversation) }}" class="relative rounded-md px-4 py-2 text-sm font-medium border-b flex items-center gap-2 border-gray-200 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+									<a data-conversation={{ $conversation->id }} href="{{ route('conversation.show', $conversation) }}" class="relative rounded-md px-4 py-2 text-sm font-medium border-b flex items-center gap-2 border-gray-200 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
 										<div>
-											<img alt="" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" class="size-10 rounded-full object-cover">
+											<img alt="" src="{{ asset('storage/', $conversation->users[0]->profile_pic) }}" class="size-10 rounded-full object-cover">
 										</div>
 										<div class="w-9/12">
-											<p class="font-bold text-gray-800">{{ $conversation->lastMessage->sender->name }}</p>
-											<p class="truncate">{{ $conversation->lastMessage->body }}</p>
+											<p class="font-bold text-gray-800">{{ $conversation->users[0]->name }}</p>
+											<p data-element="body" class="truncate">{{ $conversation->lastMessage->body ?? '' }}</p>
 										</div>
 										@if ($conversation->unread_messages > 0)
 											<div class="min-w-4 h-4 p-1 bg-indigo-800 rounded-full flex justify-center items-center absolute right-4">
-												<p class="text-[12px] text-center text-white">{{ $conversation->unread_messages }}</p>
+												<p data-element="unread" class="text-[12px] text-center text-white">{{ $conversation->unread_messages }}</p>
 											</div>
 										@endif
 									</a>
@@ -52,15 +52,15 @@
 		</ul>
 	</div>
 
-	<div class="sticky inset-x-0 bottom-0 border-t border-gray-100 flex justify-between items-center">
+	<div id="profile" class="sticky inset-x-0 bottom-0 border-t border-gray-100 flex justify-between items-center" data-id="{{ auth()->user()->id }}">
 		<a href="{{ url('profile') }}" class="w-14/16 flex items-center gap-2 bg-white hover:bg-gray-50 p-4">
-			<img alt="" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" class="size-10 rounded-full object-cover">
+			<img alt="" src="{{ asset("storage/" . auth()->user()->profile_pic) }}" class="size-10 rounded-full object-cover">
 
 			<div>
 				<p class="text-xs">
-				<strong class="block font-medium">Sergio Gutierrez</strong>
+				<strong class="block font-medium">{{ auth()->user()->name }}</strong>
 
-				<span> user@chitchat.com </span>
+				<span> {{ auth()->user()->email }} </span>
 				</p>
 			</div>
 		</a>

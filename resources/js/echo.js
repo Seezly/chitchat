@@ -15,8 +15,12 @@ window.Echo = new Echo({
 
 const userId = document.getElementById("profile").dataset.id;
 const conversationId = window.location.pathname.split("/conversation/")[1];
+const chatContainer = document.getElementById("chat-container");
 
 window.Echo.private(`App.Models.User.${userId}`).listen("GotMessage", (e) => {
+    let conversation = document.querySelector(
+        `[data-conversation='${e.conversation_id}']`,
+    );
     if (conversationId && e.conversation_id == conversationId) {
         let isMine = e.sender_id === userId ? true : false;
 
@@ -29,5 +33,23 @@ window.Echo.private(`App.Models.User.${userId}`).listen("GotMessage", (e) => {
                     </div>
                 </div>
         `;
+
+        chatContainer.insertAdjacentHTML("beforeend", message);
+        chatContainer.scrollTo(0, chatContainer.scrollHeight);
+        conversation.querySelector(`[data-element='body']`).textContent =
+            e.body;
+    } else {
+        conversation.querySelector(`[data-element='body']`).textContent =
+            e.body;
+
+        if (
+            conversation.querySelector(`[data-element='unread']`).textContent >
+            0
+        ) {
+            conversation.querySelector(`[data-element='unread']`).textContent++;
+        } else {
+            conversation.querySelector(`[data-element='unread']`).textContent =
+                1;
+        }
     }
 });
