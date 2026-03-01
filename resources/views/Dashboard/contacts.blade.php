@@ -30,7 +30,7 @@
                             @foreach ($contacts as $contact)
                                 <div class="w-full border-b border-gray-400 px-4 py-2 flex justify-between items-center mb-4">
                                     <div class="w-4/6 flex gap-4 justify-start items-center">
-                                        <img class="size-10 rounded-full object-cover" src="{{ asset('storage/', $contact->profile_pic) }}" alt="Profile picture">
+                                        <img class="size-10 rounded-full object-cover" src="{{ asset('storage/' . $contact->profile_pic) }}" alt="Profile picture">
                                         <p class="text-gray-800 font-medium truncate w-8/12">{{ $contact->name }}</p>
                                     </div>
                                         <a href="{{ url('conversation/with', $contact) }}" class="rounded-full bg-indigo-800 hover:bg-indigo-900 cursor-pointer group">
@@ -52,7 +52,7 @@
                             @foreach ($requests as $request)
                                 <div class="w-full border-b border-gray-400 px-4 py-2 flex justify-between items-center mb-4">
                                     <div class="w-4/6 flex gap-4 justify-start items-center">
-                                        <img class="size-10 rounded-full object-cover" src="{{ asset('storage/', $request->profile_pic) }}" alt="">
+                                        <img class="size-10 rounded-full object-cover" src="{{ asset('storage/' . $request->profile_pic) }}" alt="">
                                         <p class="text-gray-800 font-medium truncate w-8/12">{{ $request->name }}</p>
                                     </div>
                                     <form class="flex justify-center items-center gap-2" action="{{ route('contact.update') }}" method="POST">

@@ -25,7 +25,7 @@
 								<li>
 									<a data-conversation={{ $conversation->id }} href="{{ route('conversation.show', $conversation) }}" class="relative rounded-md px-4 py-2 text-sm font-medium border-b flex items-center gap-2 border-gray-200 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
 										<div>
-											<img alt="" src="{{ asset('storage/', $conversation->users[0]->profile_pic) }}" class="size-10 rounded-full object-cover">
+											<img alt="" src="{{ asset('storage/' . $conversation->users[0]->profile_pic) }}" class="size-10 rounded-full object-cover">
 										</div>
 										<div class="w-9/12">
 											<p class="font-bold text-gray-800">{{ $conversation->users[0]->name }}</p>

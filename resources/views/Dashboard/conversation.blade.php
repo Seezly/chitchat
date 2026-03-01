@@ -2,7 +2,7 @@
     <div class="w-full relative overflow-hidden bg-gray-200 h-full">
         <div class="bg-white w-full h-16 px-4 py-2 flex justify-between items-center relative z-1">
             <div class="flex gap-4 justify-center items-center">
-                <img class="size-10 rounded-full object-cover" src="{{ asset('storage/', $contact->profile_pic) }}" alt="">
+                <img class="size-10 rounded-full object-cover" src="{{ asset('storage/' . $contact->profile_pic) }}" alt="">
                 <p class="text-gray-800 font-medium">{{ $contact->name }}</p>
             </div>
             <div class="flex gap-4 justify-center items-center relative">
