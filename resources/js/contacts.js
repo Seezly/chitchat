@@ -82,24 +82,15 @@ if (searchInput) {
                                                 "meta[name='csrf-token']",
                                             )
                                             .getAttribute("content"),
-                                        _id: document.querySelectorAll(
-                                            "form[action='/contacts'] input[name='_id']",
-                                        )[i].value,
+                                        _id: btn.parentElement.querySelector(
+                                            "input[name='_id']",
+                                        ).value,
                                     }),
                                 })
                                     .then((res) => res.json())
                                     .then((data) => {
                                         if (data.success) {
-                                            console.log(
-                                                document.querySelectorAll(
-                                                    "div[data-id]",
-                                                )[i],
-                                            );
-                                            document
-                                                .querySelectorAll(
-                                                    "div[data-id]",
-                                                )
-                                                [i].remove();
+                                            btn.parentElement.parentElement.remove();
                                         }
                                     });
                             });
