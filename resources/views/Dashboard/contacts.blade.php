@@ -1,4 +1,4 @@
-<x-layouts.layout>
+<x-layouts.layout title="Contacts">
     <div class="w-full bg-gray-200 h-full px-8 py-4">
         <div class="border-b border-gray-200">
             <div role="tablist" class="tabs -mb-px flex gap-4">
@@ -69,6 +69,7 @@
                                     </form>
                                 </div>
                             @endforeach
+                            {{ $requests->links() }}
                         @endif
                     </div>
                 </div>

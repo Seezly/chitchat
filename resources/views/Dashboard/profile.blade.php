@@ -1,4 +1,4 @@
-<x-layouts.layout>
+<x-layouts.layout title="Profile">
     <div class="w-full bg-gray-200 h-full px-8 py-4">
         <h1 class="text-4xl font-bold text-gray-800 mb-4">Profile information</h1>
         <p class="text-gray-600 mb-8">

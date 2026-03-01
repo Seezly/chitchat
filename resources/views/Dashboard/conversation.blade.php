@@ -1,10 +1,12 @@
-<x-layouts.layout>
+<x-layouts.layout title="{{$contact->name}}">
     <div class="w-full relative overflow-hidden bg-gray-200 h-full">
         <div class="bg-white w-full h-16 px-4 py-2 flex justify-between items-center relative z-1">
             <div class="flex gap-4 justify-center items-center">
                 <img class="size-10 rounded-full object-cover" src="{{ asset('storage/' . $contact->profile_pic) }}" alt="">
-                <p class="text-gray-800 font-medium">{{ $contact->name }}</p>
-                <p class="text-gray-800 font-medium">{{ $contact->status }}</p>
+                <div class="flex flex-col">
+                    <p class="text-gray-800 font-medium">{{ $contact->name }}</p>
+                    <p class="text-gray-800 text-[12px]">{{ $contact->status }}</p>
+                </div>
             </div>
             <div class="flex gap-4 justify-center items-center relative">
                 <form action="" id="form-search" class="max-w-0 overflow-hidden transition-[max-width] duration-200" aria-hidden="true">
@@ -36,18 +38,10 @@
             </div>
         </div>
         <div id="chat-container" class="flex flex-col justify-start gap-4 py-2 px-4 h-[82.5vh] overflow-auto">
-            @foreach ($messages as $message)
-                @php
-                    $isMine = $message->sender_id === auth()->id();
-                @endphp                
-                <div class="bg-indigo-800 rounded-xl {{$isMine ? "rounded-br-none self-end" : "rounded-bl-none self-start"}} max-w-1/2 py-2 px-4">
-                    <p class="text-white">{{ $message->body }}</p>
-                    <div class="flex justify-between items-center mt-2 gap-4">
-                        <span class="text-white text-[8px]">{{ $message->created_at->format('m/d/y h:i a') }}</span>
-                        <span class="text-white text-[8px]">{{ $conversation->users->find($contact->id)->pivot->last_read_at > $message->created_at && $isMine ? "read" : "sent" }}</span>
-                    </div>
-                </div>
-            @endforeach
+            <x-partials.message :messages=$messages :conversation=$conversation :contact=$contact/>
+            <div id="bottom" class="hidden flex justify-center items-center fixed bottom-20 size-10 rounded-full p-2 bg-white border border-indigo-800 hover:bg-indigo-900 transition duration-200 cursor-pointer group">
+                <svg xmlns="http://www.w3.org/2000/svg" class="self-center justify-self-center fill-indigo-800 size-4 transform group-hover:scale-[1.2] group-hover:fill-white transition duration-200" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M297.4 566.6C309.9 579.1 330.2 579.1 342.7 566.6L502.7 406.6C515.2 394.1 515.2 373.8 502.7 361.3C490.2 348.8 469.9 348.8 457.4 361.3L352 466.7L352 96C352 78.3 337.7 64 320 64C302.3 64 288 78.3 288 96L288 466.7L182.6 361.3C170.1 348.8 149.8 348.8 137.3 361.3C124.8 373.8 124.8 394.1 137.3 406.6L297.3 566.6z"/></svg>
+            </div>
         </div>
         <form id="form-message" action="{{ route('message.store', $conversation) }}" method="POST" class="sticky bottom-0 w-full py-2 px-4 bg-white h-16 flex items-center">
             @csrf

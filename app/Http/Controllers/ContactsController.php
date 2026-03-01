@@ -27,7 +27,7 @@ class ContactsController extends Controller
             ->whereNotNull('contacts.accepted_at')
             ->where('users.id', '!=', $currentUserId)
             ->select('users.name', 'users.profile_pic', 'users.status', 'users.id')
-            ->paginate(6);
+            ->simplePaginate(6);
 
         $friendRequests = $user
             ->leftJoin('contacts', 'users.id', '=', 'contacts.sender_id')
@@ -43,7 +43,7 @@ class ContactsController extends Controller
                 $query->whereNull('contacts.accepted_at')
                     ->whereNull('contacts.rejected_at');
             })
-            ->paginate(6);
+            ->simplePaginate(6);
 
         return view('dashboard.contacts', ['contacts' => $contacts, 'requests' => $friendRequests]);
     }

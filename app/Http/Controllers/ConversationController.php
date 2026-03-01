@@ -23,8 +23,12 @@ class ConversationController extends Controller
         $contact = $conversation->users->where('id', '!=', $currentUserId)->first();
 
         $messages = $conversation->messages()
-            ->orderBy('created_at', 'asc')
+            ->orderBy('created_at', 'desc')
             ->paginate(20);
+
+        if ($request->ajax()) {
+            return view('components.partials.message', compact('contact', 'conversation', 'messages'));
+        }
 
         return view('dashboard.conversation', compact('contact', 'conversation', 'messages'));
     }

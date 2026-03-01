@@ -1,5 +1,5 @@
 @props([
-    'title' => 'Dashboard'
+    'title' => 'Dashboard',
 ])
 
 <!DOCTYPE html>

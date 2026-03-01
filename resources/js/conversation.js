@@ -10,6 +10,9 @@ const bodyMessage = document.getElementById("body");
 
 const chatContainer = document.getElementById("chat-container");
 
+const scrollToBottom = document.getElementById("bottom");
+let isLoading = false;
+
 if (searchBtn) {
     searchBtn.addEventListener("click", (e) => {
         searchForm.classList.toggle("max-w-0");
@@ -29,11 +32,13 @@ if (convoBtn) {
 }
 
 if (btnSendMessage) {
-    chatContainer.scrollTo(0, conversation.scrollHeight);
+    chatContainer.scrollTo(0, chatContainer.scrollHeight);
+
+    formSendMessage.addEventListener("submit", (e) => e.preventDefault);
 
     btnSendMessage.addEventListener("click", (e) => {
         e.preventDefault();
-
+        console.log("hey");
         let message = bodyMessage.value;
         let conversation = document.querySelector(
             `[data-conversation='${window.location.pathname.split("/conversation/")[1]}']`,
@@ -75,5 +80,74 @@ if (btnSendMessage) {
                     ).textContent = message;
                 }
             });
+    });
+}
+
+if (scrollToBottom) {
+    chatContainer.addEventListener("scroll", () => {
+        if (chatContainer.scrollTop < 500) {
+            scrollToBottom.classList.remove("hidden");
+        } else {
+            scrollToBottom.classList.add("hidden");
+        }
+    });
+
+    scrollToBottom.addEventListener("click", () =>
+        chatContainer.scrollTo(0, chatContainer.scrollHeight),
+    );
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && !isLoading) {
+                    loadMore(entry.target);
+                }
+            });
+        },
+        {
+            root: chatContainer,
+            rootMargin: "200px",
+            scrollMargin: "0px",
+            threshold: 0.1,
+        },
+    );
+
+    function loadMore(trigger) {
+        const nextPageUrl = trigger.dataset.nextPage;
+
+        if (!nextPageUrl) return;
+
+        isLoading = true;
+
+        fetch(nextPageUrl, {
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+            },
+        })
+            .then((response) => response.text())
+            .then((html) => {
+                trigger.remove();
+
+                chatContainer.insertAdjacentHTML("afterbegin", html);
+
+                const newTrigger = chatContainer.querySelector(".load-trigger");
+                if (newTrigger) {
+                    observer.observe(newTrigger);
+                }
+
+                isLoading = false;
+            })
+            .catch((error) => {
+                console.error("Error loading more:", error);
+                isLoading = false;
+            });
+    }
+
+    // Start observing initial trigger
+    document.addEventListener("DOMContentLoaded", () => {
+        const initialTrigger = document.querySelector(".load-trigger");
+        if (initialTrigger) {
+            observer.observe(initialTrigger);
+        }
     });
 }

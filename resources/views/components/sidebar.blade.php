@@ -6,7 +6,7 @@
 
 		<ul class="mt-6 space-y-1">
 			<li>
-				<details class="group [&amp;_summary::-webkit-details-marker]:hidden" open>
+				<details class="overflow-y-auto max-h-[55vh] group [&amp;_summary::-webkit-details-marker]:hidden" open>
 					<summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
 						<span class="text-sm font-medium"> Chats </span>
 
