@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendMessage;
 use App\Models\Conversation;
 use Illuminate\Http\Request;
 use App\Models\Message;
@@ -27,7 +28,9 @@ class MessageController extends Controller
         $conversation->last_message_at = now();
         $conversation->save();
 
-        return response()->json($message, 201);
+        SendMessage::dispatch($message);
+
+        return response()->json(['success' => true, 'data' => 'Message sent successfully'], 201);
     }
 
     public function search(Request $request)
@@ -50,6 +53,6 @@ class MessageController extends Controller
     {
         $conversation->messages()->delete();
 
-        return response()->back()->with(['success' => 'Messages deleted succesfully']);
+        return response()->back()->with(['success' => 'Messages deleted successfully']);
     }
 }

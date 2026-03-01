@@ -18,7 +18,7 @@ class Message extends Model
     protected function casts(): array
     {
         return [
-            'created_at' => 'datetime:m-d-y',
+            'created_at' => 'datetime:m/d/y h:i a',
         ];
     }
 
