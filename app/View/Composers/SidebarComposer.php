@@ -30,7 +30,7 @@ class SidebarComposer
                                     )
                                     ->where('conversation_user.user_id', $currentUserId)
                                     ->where(function ($query) {
-                                        $query->where('messages.created_at', '>', 'conversation_user.last_read_at')
+                                        $query->whereColumn('messages.created_at', '>', 'conversation_user.last_read_at')
                                             ->orWhereNull('conversation_user.last_read_at');
                                     });
                             }
