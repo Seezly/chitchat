@@ -39,17 +39,42 @@ window.Echo.private(`App.Models.User.${userId}`).listen("GotMessage", (e) => {
         conversation.querySelector(`[data-element='body']`).textContent =
             e.body;
     } else {
-        conversation.querySelector(`[data-element='body']`).textContent =
-            e.body;
-
-        if (
-            conversation.querySelector(`[data-element='unread']`).textContent >
-            0
-        ) {
-            conversation.querySelector(`[data-element='unread']`).textContent++;
+        if (!conversation) {
+            document.getElementById("chats").innerHTML = "";
+            const conversationHTML = `
+                <li data-conversation="${e.conversation_id}">
+					<a href="/conversation/${e.conversation_id}" class="relative rounded-md px-4 py-2 text-sm font-medium border-b flex items-center gap-2 border-gray-200 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+						<div>
+							<img alt="" src="/storage/${e.user.profile_pic}" class="size-10 rounded-full object-cover">
+						</div>
+						<div class="w-9/12">
+							<p class="font-bold text-gray-800">${e.user.name}</p>
+							<p data-element="body" class="truncate">${e.body}</p>
+						</div>
+						<div class="min-w-4 h-4 p-1 bg-indigo-800 rounded-full flex justify-center items-center absolute right-4">
+							<p data-element="unread" class="text-[12px] text-center text-white">1</p>
+						</div>
+					</a>
+			    </li>
+            `;
+            document
+                .getElementById("chats")
+                .insertAdjacentHTML("afterbegin", conversationHTML);
         } else {
-            conversation.querySelector(`[data-element='unread']`).textContent =
-                1;
+            conversation.querySelector(`[data-element='body']`).textContent =
+                e.body;
+
+            if (
+                conversation.querySelector(`[data-element='unread']`)
+                    .textContent > 0
+            ) {
+                conversation.querySelector(`[data-element='unread']`)
+                    .textContent++;
+            } else {
+                conversation.querySelector(
+                    `[data-element='unread']`,
+                ).textContent = 1;
+            }
         }
     }
 });

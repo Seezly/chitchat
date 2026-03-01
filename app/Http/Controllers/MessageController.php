@@ -36,21 +36,21 @@ class MessageController extends Controller
         return response()->json(['success' => true, 'data' => 'Message sent successfully'], 201);
     }
 
-    public function search(Request $request)
-    {
+    // public function search(Request $request)
+    // {
 
-        $currentUserId = auth()->id();
+    //     $currentUserId = auth()->id();
 
-        $validated = $request->validate([
-            'conversation_id' => 'required|exists:conversations,id',
-            'q' => 'required|string',
-        ]);
+    //     $validated = $request->validate([
+    //         'conversation_id' => 'required|exists:conversations,id',
+    //         'q' => 'required|string',
+    //     ]);
 
-        Message::where(function ($query) use ($validated) {
-            $query->where('body', 'LIKE', '%' . $validated['q'] . '%')
-                ->where('conversation_id', '=', $validated['conversation_id']);
-        });
-    }
+    //     Message::where(function ($query) use ($validated) {
+    //         $query->where('body', 'LIKE', '%' . $validated['q'] . '%')
+    //             ->where('conversation_id', '=', $validated['conversation_id']);
+    //     });
+    // }
 
     public function destroyMessages(Conversation $conversation)
     {

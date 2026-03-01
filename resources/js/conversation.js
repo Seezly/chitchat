@@ -1,5 +1,5 @@
-const searchForm = document.getElementById("form-search");
-const searchBtn = document.getElementById("search-message");
+// const searchForm = document.getElementById("form-search");
+// const searchBtn = document.getElementById("search-message");
 
 const convoSettings = document.getElementById("convo-settings");
 const convoBtn = document.getElementById("convo-btn");
@@ -13,13 +13,13 @@ const chatContainer = document.getElementById("chat-container");
 const scrollToBottom = document.getElementById("bottom");
 let isLoading = false;
 
-if (searchBtn) {
-    searchBtn.addEventListener("click", (e) => {
-        searchForm.classList.toggle("max-w-0");
-        searchForm.classList.toggle("max-w-64");
-        searchForm.ariaHidden = "false";
-    });
-}
+// if (searchBtn) {
+//     searchBtn.addEventListener("click", (e) => {
+//         searchForm.classList.toggle("max-w-0");
+//         searchForm.classList.toggle("max-w-64");
+//         searchForm.ariaHidden = "false";
+//     });
+// }
 
 if (convoBtn) {
     convoBtn.addEventListener("click", (e) => {
@@ -38,7 +38,6 @@ if (btnSendMessage) {
 
     btnSendMessage.addEventListener("click", (e) => {
         e.preventDefault();
-        console.log("hey");
         let message = bodyMessage.value;
         let conversation = document.querySelector(
             `[data-conversation='${window.location.pathname.split("/conversation/")[1]}']`,

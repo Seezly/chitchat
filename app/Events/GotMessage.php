@@ -56,6 +56,7 @@ class GotMessage implements ShouldBroadcast
             'id'              => $this->message->id,
             'sender_id'       => $this->message->sender_id,
             'conversation_id' => $this->message->conversation_id,
+            'user' => $this->message->sender,
             'body'            => $this->message->body,
             'created_at'      => $this->message->created_at->toDateTimeString(),
             'last_read_at' => $receiver->pivot->last_read_at
