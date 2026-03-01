@@ -42,7 +42,6 @@ class GotMessage implements ShouldBroadcast
                 new PrivateChannel('App.Models.User.' . $receiver->id),
             ];
         } catch (\Exception $e) {
-            \Log::error('Error en broadcastOn de GotMessage: ' . $e->getMessage());
             return []; // o lanzar excepción
         }
     }
@@ -52,8 +51,6 @@ class GotMessage implements ShouldBroadcast
         $receiver = $this->message->conversation->users()
             ->where('user_id', '!=', $this->message->sender_id)
             ->first();
-
-        \Log::error('Last read at: ' . $receiver);
 
         return [
             'id'              => $this->message->id,
