@@ -56,7 +56,11 @@ class ContactsController extends Controller
         $contactsUserIds = Contact::where(function ($query) use ($currentUserId) {
             $query->where('sender_id', $currentUserId)
                 ->orWhere('receiver_id', $currentUserId);
-        })->whereNotNull('accepted_at')
+        })
+            ->where(function ($query) {
+                $query->whereNull('rejected_at')
+                    ->orWhereNull('accepted_at');
+            })
             ->get()
             ->flatMap(function ($contact) {
                 return [$contact->sender_id, $contact->receiver_id];

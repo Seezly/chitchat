@@ -28,6 +28,9 @@ class MessageController extends Controller
         $conversation->last_message_at = now();
         $conversation->save();
 
+        $conversation = $message->conversation;
+        $conversation->users()->updateExistingPivot($currentUserId, ['last_read_at' => now()]);
+
         SendMessage::dispatch($message);
 
         return response()->json(['success' => true, 'data' => 'Message sent successfully'], 201);
