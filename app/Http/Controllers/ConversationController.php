@@ -54,7 +54,7 @@ class ConversationController extends Controller
         $conversation->delete();
         $conversation->messages()->delete();
 
-        return response()->back()->with(['success' => 'Messages deleted succesfully']);
+        return redirect()->back()->with(['success' => 'Messages deleted succesfully']);
     }
 
     private function findOrCreateConversation(int $currentUserId, int $contactId): Conversation

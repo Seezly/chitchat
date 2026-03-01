@@ -53,6 +53,6 @@ class MessageController extends Controller
     {
         $conversation->messages()->delete();
 
-        return response()->back()->with(['success' => 'Messages deleted successfully']);
+        return redirect()->back()->with(['success' => 'Messages deleted successfully']);
     }
 }
