@@ -1,59 +1,49 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ChitChat - Real-time Chat Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project was made for the sake of learning Laravel making a full-stack project where the quantity of features to practice could be large. So I thought that a real-time chat app would be a great option being that a chat app could be as simple or fully-featured as the developer wants or the application requires. I began only with WebSockets implementation using Laravel Reverb, many-to-many relationship table with conversation_user table, MVC approach, simple and infinite scrolling pagination (for the conversations), database indexes, foreign and unique keys, middlewares, soft deletes in conversations and messages table, rate limiting for the messages and friend requests endpoints.
 
-## About Laravel
+## Why?
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+I had a very long time wanting to learn Laravel as I think is a really great and useful framework and I took this last stage in the Global Internship at Diverta's as the signal to make a project to learn it, although is quite simple and I didn't finished to the extent that I wanted to, is a good start point and will be a project that I'll be working on from now on implementing new knowledge and making a good full-stack project for my portfolio.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Laravel
+- Laravel Reverb (WebSockets broadcasting)
+- MySQL
+- TailwindCSS
+- Vanilla JavaScript
+- Blade
 
-## Learning Laravel
+As a matter of fact, I will be including in an near future Laravel LiveWire components to make the real-time events and changes smoothier.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## How can I install this project?
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+First things first: you have to clone this repo using the terminal and running the following commands:
 
-## Laravel Sponsors
+`git clone https://github.com/Seezly/chitchat.git`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Then, please do:
 
-### Premium Partners
+`cd chitchat`
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+`mv .env.example .env` (this will copy the .env.example file to .env so you can modify all the env variables)
 
-## Contributing
+`composer install` (this will install all the dependencies)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+`npm install && npm run build` (this will install and build all the Vite dependencies and files),
 
-## Code of Conduct
+`composer run dev` (this will turn up the server locally, it runs the server, queue and websockets server)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## To-Do list for this project
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+-[] Make it 100% responsive
+-[] Separate events for messages, conversations and user states (and also creating those that doesn't exist)
+-[] Improve database tables (adding cache columns to conversations, improve indexes for future features)
+-[] Optimize queries
+-[] Add search message feature on conversation
+-[] Add search conversation/message on sidebar
+-[] Add real-time notifications
+-[] Add friend suggestions
+-[] Edit messages
+-[] Delete specific (or specifics) messages
