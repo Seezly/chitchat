@@ -38,6 +38,10 @@ Then, please do:
 ## To-Do list for this project
 
 -[] Make it 100% responsive
+-[] Edit messages
+-[] Delete specific (or specifics) messages
+-[] Separate elements in components (Views)
+-[] Separate logic to specific files and function translation (JavaScript files)
 -[] Separate events for messages, conversations and user states (and also creating those that doesn't exist)
 -[] Improve database tables (adding cache columns to conversations, improve indexes for future features)
 -[] Optimize queries
@@ -45,5 +49,3 @@ Then, please do:
 -[] Add search conversation/message on sidebar
 -[] Add real-time notifications
 -[] Add friend suggestions
--[] Edit messages
--[] Delete specific (or specifics) messages

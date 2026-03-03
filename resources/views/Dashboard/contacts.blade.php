@@ -83,7 +83,7 @@
                     <div id="friend-container" class="w-full flex justify-start items-center flex-wrap gap-[5%]">
                     </div>
                 </div>
-                <div class="">
+                {{-- <div class="">
                     <p class="mb-4 text-xl font-bold text-gray-800">Friend Suggestions</p>
                     <div class="w-full flex justify-start items-center flex-wrap gap-[5%]">
                         <div class="w-[45%] border-b border-gray-400 px-4 py-2 flex justify-between items-center mb-4">
@@ -96,7 +96,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
